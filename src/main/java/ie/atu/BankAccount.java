@@ -42,4 +42,8 @@ public class BankAccount {
   public void setBalance(int balance) {
     this.balance = balance;
   }
+
+  public void topUp(int amount) {
+    setBalance(getBalance() + amount);
+  }
 }

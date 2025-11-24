@@ -32,8 +32,15 @@ public class BankAccountTest {
   @Test
    void addPositiveBalance() {
     double initialAmount = account.getBalance();
-    account.topUp(100);
+    account.deposit(100);
     assertEquals(initialAmount + 100, account.getBalance());
+  }
+
+  @Test
+  void addNegativeBalance() {
+    double initialAmount = account.getBalance();
+    Exception ex = assertThrows(IllegalArgumentException.class, () -> account.deposit(-200));
+    assertEquals("Balance must be greater than 0", ex.getMessage());
   }
 
 

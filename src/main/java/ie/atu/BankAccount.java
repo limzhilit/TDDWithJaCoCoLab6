@@ -43,7 +43,10 @@ public class BankAccount {
     this.balance = balance;
   }
 
-  public void topUp(int amount) {
+  public void deposit(int amount) {
+    if(amount <= 0 ) {
+      throw new IllegalArgumentException("Balance must be greater than 0");
+    }
     setBalance(getBalance() + amount);
   }
 }

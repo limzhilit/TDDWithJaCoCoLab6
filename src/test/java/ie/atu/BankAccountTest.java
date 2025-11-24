@@ -64,6 +64,16 @@ public class BankAccountTest {
     assertEquals("Balance must be greater than 0", ex.getMessage());
   }
 
+  @Test
+  void testSetter() {
+    account.setName("Alex");
+    assertEquals("Alex", account.getName());
+    account.setBalance(100);
+    assertEquals(100, account.getBalance());
+    account.setAccount("ACC122456");
+    assertEquals("ACC122456", account.getAccount());
+  }
+
 
 
 }

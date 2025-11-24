@@ -29,4 +29,13 @@ public class BankAccountTest {
     assertEquals("Balance must be greater than 0", ex.getMessage());
   }
 
+  @Test
+   void addPositiveBalance() {
+    double initialAmount = account.getBalance();
+    account.topUp(100);
+    assertEquals(initialAmount + 100, account.getBalance());
+  }
+
+
+
 }

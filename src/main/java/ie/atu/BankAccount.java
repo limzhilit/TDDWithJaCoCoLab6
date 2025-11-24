@@ -49,4 +49,11 @@ public class BankAccount {
     }
     setBalance(getBalance() + amount);
   }
+
+  public void withdraw(int amount) {
+    if(amount <= 0 || amount > balance) {
+      throw new IllegalArgumentException("Balance must be greater than 0");
+    }
+    setBalance(getBalance() - amount);
+  }
 }

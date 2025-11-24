@@ -15,6 +15,7 @@ public class BankAccountTest {
     account = new BankAccount();
   }
 
+  @Test
   void constructorInitialisation() {
     account = new BankAccount("ACC123456", "Paul", 100);
     assertEquals("ACC123456", account.getAccount());
@@ -38,8 +39,28 @@ public class BankAccountTest {
 
   @Test
   void addNegativeBalance() {
-    double initialAmount = account.getBalance();
     Exception ex = assertThrows(IllegalArgumentException.class, () -> account.deposit(-200));
+    assertEquals("Balance must be greater than 0", ex.getMessage());
+  }
+
+  @Test
+  void withdrawPositiveAmount() {
+    account.setBalance(100);
+    double initialAmount = account.getBalance();
+    account.withdraw(50);
+    assertEquals(initialAmount - 50, account.getBalance());
+  }
+
+  @Test
+  void withdrawNegativeAmount() {
+    Exception ex = assertThrows(IllegalArgumentException.class, () -> account.withdraw(-200));
+    assertEquals("Balance must be greater than 0", ex.getMessage());
+  }
+
+  @Test
+  void withdrawExceedingAmount() {
+    int balance = account.getBalance();
+    Exception ex = assertThrows(IllegalArgumentException.class, () -> account.withdraw(balance + 1));
     assertEquals("Balance must be greater than 0", ex.getMessage());
   }
 
